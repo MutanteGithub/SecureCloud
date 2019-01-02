@@ -1,10 +1,79 @@
 #!/bin/bash
+port=9191
+rpcport=9291
+USERHOME=`eval echo "~$USER"`
+namemoney="securecloud"
+configfile=$namemoney".conf"
+pidfile=$namemoney".pid"
+client=$namemoney"-cli"
+server=$namemoney"d"
+# Set these to change the version of SecureCloud to install
+TARBALLNAME="securecloud-2.1.0-x86_64-linux-gnu.tar.gz"
+TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/2.1.0/"$TARBALLNAME
+BOOTSTRAPURL=""
+BOOTSTRAPARCHIVE=""
+BWKVERSION="1.0.0"
+
+echo  "
+
+                                        ,#%%%%%%%%%(,
+                                    .##########(((##%%%#.
+                                  /%#########((***/####%%%/
+                    ,/#%%%%##%%#/%(//((((##(((((((####//#%%%
+                 #%%%##*######(((((((////((#(((((((########%%,
+              *&%%%%########(((((((//*,.,,*((##(/((((#######%%
+            ,&%%%%%#######((((((((/((/*,,**//(###((((((####(#%%%%&%(.
+           %%%%%%%######(((((//////((//////////##/((((((###(##%%%%%%%%
+          #%%%%#%#####((((((//***,********/////#(//*/(((((######%%%%%%&&&&.
+         #&%%#(/#####((((((///**,,,,,,********///*,,*/(((((######%%%%%%%&&&%
+        .&%%%%#######((((//****////*****////////(((#((((((((#####%%%%%%%&&&&&.
+        ,&%%%##((####((((/**,*/(((//*****,,****///((#/((((((///((##%%%%%#%&&@&
+    *&&&&%%%#/**/((#((((((/////((///**,,,,,,,,**///((/((((//*,,*((#%%%&&&&&&@@.
+ ,%&&&&&&%%%%########(((((/////((//**,,......,,**//((/((((((//(((#%%%%%&&%##&@*
+*@@&&&%%#############((((((////((//**,,,......,,*//((/((((((#####%%%%%&&&%/(&@,
+@@@&%##(//*/((#######((((((///(((//***,,,..,,,***//((/(((((#####%%%%%%&&&&&&@@
+@@&&%#(/*,**/((#######((((((//(#((/*****,,,*****//((((((((#####%###%%%%&&&&&@(
+@@@&&%%#((((#####(///(##((((((/##((////******///////(/(((#######(/*/#%%&&&&@*
+%@@@@&&%%%%%%%%#/(//((###((((((/(((((/////////////*,,/((#####%%%####%&&&&&&,
+ &@@@&&&&&&&&%%%%%%#######((((((((((/**////////((((((((#####%%%%%#(#&&&&&*
+   %@@@@&&&&&&&%%%%%%########((((((((((((((((((((((#(######%%%%%%%&&&&*
+
+                                  SecureCloud "
+
+
+
+echo ""
+echo This script create multiple
+echo Master Node for SCN Money.
+echo ""
+
+read -p "How many Master Nodes do you want? [1/x] :" cant
+
+while :
+do
+  read -p "Are you sure do want to create "$cant" Master Nodes ? [Y/n] :" INPUT_STRING
+  case $INPUT_STRING in
+    y)
+        break
+                ;;
+    n)
+        break
+        ;;
+        *)
+                INPUT_STRING=y
+                break
+                ;;
+  esac
+done
+
 
 # Check if we are root
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root." 1>&2
    exit 1
 fi
+
+cd
 
 # Install tools for dig and systemctl
 echo "Preparing installation..."
