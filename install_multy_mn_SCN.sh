@@ -8,9 +8,9 @@ pidfile=$namemoney".pid"
 client=$namemoney"-cli"
 server=$namemoney"d"
 # Set these to change the version of SecureCloud to install
-TARBALLNAME="securecloud-2.1.0-x86_64-linux-gnu.tar.gz"
-TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/2.1.0/"$TARBALLNAME
-BOOTSTRAPURL=""
+TARBALLNAME="SecureCloud-2.2.0-linux.tar.gz"
+TARBALLURL=""$TARBALLNAME
+BOOTSTRAPURL="https://github.com/securecloudnet/SecureCloud/releases/download/2.2.0/"
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
 
