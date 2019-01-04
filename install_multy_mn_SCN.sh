@@ -13,9 +13,9 @@ TARBALLURL=""$TARBALLNAME
 BOOTSTRAPURL="https://github.com/securecloudnet/SecureCloud/releases/download/2.2.0/"
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
+cant=1
 
 echo  "
-
                                         ,#%%%%%%%%%(,
                                     .##########(((##%%%#.
                                   /%#########((***/####%%%/
@@ -37,7 +37,6 @@ echo  "
 %@@@@&&%%%%%%%%#/(//((###((((((/(((((/////////////*,,/((#####%%%####%&&&&&&,
  &@@@&&&&&&&&%%%%%%#######((((((((((/**////////((((((((#####%%%%%#(#&&&&&*
    %@@@@&&&&&&&%%%%%%########((((((((((((((((((((((#(######%%%%%%%&&&&*
-
                                   SecureCloud "
 
 
@@ -138,11 +137,11 @@ then
 
     dir="${USERHOME}/"
 
-    if [ -z $cant ]
+    if [ -z $cant -o $cant < 1 ]
      then
        printf -v cant "%03d" 1
     fi
-
+	 
     if [ -d $dir ]
       then
 
