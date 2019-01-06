@@ -121,7 +121,7 @@ echo -e "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf > /dev/null 2>
 # Install SCN daemon
 wget $TARBALLURL
 tar -xzvf $TARBALLNAME
-rm $TARBALLNAME
+rm $TARBALLNAME > /dev/null 2>&1
 mv ./securecloudd /usr/local/bin
 mv ./securecloud-cli /usr/local/bin
 mv ./securecloud-tx /usr/local/bin
@@ -153,8 +153,8 @@ then
       do
         i=$((i+1))
 
-        echo "mkdir "$dir$x"/"|sh
-        echo "rm "$dir$x"/*.conf"|sh
+        echo "mkdir "$dir$x"/  > /dev/null 2>&1"|sh
+        echo "rm "$dir$x"/*.conf  > /dev/null 2>&1"|sh
 
         newport=$((port + i))
         newportrpc=$((rpcport + i))
