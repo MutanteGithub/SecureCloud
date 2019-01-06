@@ -137,10 +137,13 @@ then
 
     dir="${USERHOME}/"
 
-    if [ -z $cant -o $cant < 1 ]
-     then
-       printf -v cant "%03d" 1
+     if [ $cant -lt 1 ]
+    then
+      printf -v cant "%03d" 1
+    else
+       printf -v cant "%03d" $cant
     fi
+
 
     if [ -d $dir ]
       then
