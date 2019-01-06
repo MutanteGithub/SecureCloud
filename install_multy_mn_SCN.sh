@@ -201,7 +201,7 @@ then
       i=0
       for x in $( eval echo {$ini..$cant} )
       do
-        i=$((i+1)
+        i=$((i+1))
         ps -fea|grep -s "$dir$x"/"$configfile" |grep -v "grep"| awk '{ print "kill -9 "$2 }'|sh
         echo $server" -datadir="$dir$x"  -conf="$dir$x"/"$configfile" -pid="$dir$x"/"$pidfile" -reindex"|sh
         sleep $((30+i))
