@@ -102,8 +102,8 @@ apt-get -qq install build-essential && apt-get -qq install libtool autotools-dev
 apt-get -qq install aptitude
 apt-get -qq install libevent-dev
 apt-get -qq install libzmq3-dev
-sudo apt-get install libboost-all-dev
-sudo apt-get install libdb4.8-dev libdb4.8++-dev
+apt-get -qq install libboost-all-dev
+apt-get -qq install libdb4.8-dev libdb4.8++-dev
 
 echo "Creating Swap..."
 
