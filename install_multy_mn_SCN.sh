@@ -133,7 +133,6 @@ then
     echo "Creating "$cant" Master Nodes"
 
     printf -v ini "%03d" 1
-    printf -v cant "%03d" $cant
 
     dir="${USERHOME}/"
 
