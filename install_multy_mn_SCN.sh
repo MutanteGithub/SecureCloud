@@ -125,7 +125,7 @@ rm $TARBALLNAME
 mv ./securecloudd /usr/local/bin
 mv ./securecloud-cli /usr/local/bin
 mv ./securecloud-tx /usr/local/bin
-rm -rf $TARBALLNAME
+rm -rf $TARBALLNAME > /dev/null 2>&1
 
 
 if [ $INPUT_STRING == "y" ]
