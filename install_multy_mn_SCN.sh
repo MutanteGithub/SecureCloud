@@ -9,7 +9,7 @@ client=$namemoney"-cli"
 server=$namemoney"d"
 # Set these to change the version of SecureCloud to install
 TARBALLNAME="SecureCloud-2.2.0-linux.tar.gz"
-TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/2.2.                                                                                                            0/"$TARBALLNAME
+TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/2.2.0/"$TARBALLNAME
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
@@ -50,7 +50,7 @@ read -p "How many Master Nodes do you want? [1/x] :" cant
 
 while :
 do
-  read -p "Are you sure do want to create "$cant" Master Nodes ? [Y/n] :" INPUT_                                                                                                            STRING
+  read -p "Are you sure do want to create "$cant" Master Nodes ? [Y/n] :" INPUT_STRING
   case $INPUT_STRING in
     y)
         break
@@ -79,7 +79,7 @@ echo "Preparing installation..."
 apt-get install git dnsutils systemd -y > /dev/null 2>&1
 
 # Check for systemd
-systemctl --version >/dev/null 2>&1 || { echo "systemd is required. Are you usin                                                                                                            g Ubuntu 16.04?"  >&2; exit 1; }
+systemctl --version >/dev/null 2>&1 || { echo "systemd is required. Are you using Ubuntu 16.04?"  >&2; exit 1; }
 
 # CHARS is used for the loading animation further down.
 CHARS="/-\|"
@@ -98,7 +98,7 @@ echo "Installing dependencies..."
 apt-get -qq autoremove
 apt-get -qq install wget htop unzip
 echo "Installing dependencies...."
-apt-get -qq install build-essential && apt-get -qq install libtool autotools-dev                                                                                                             autoconf libevent-pthreads-2.0-5 automake && apt-get -qq install libssl-dev &&                                                                                                             apt-get -qq install libboost-all-dev && apt-get -qq install software-properties-                                                                                                            common && add-apt-repository -y ppa:bitcoin/bitcoin && apt update && apt-get -qq                                                                                                             install libdb4.8-dev && apt-get -qq install libdb4.8++-dev && apt-get -qq insta                                                                                                            ll libminiupnpc-dev && apt-get -qq install libqt4-dev libprotobuf-dev protobuf-c                                                                                                            ompiler && apt-get -qq install libqrencode-dev && apt-get -qq install git && apt                                                                                                            -get -qq install pkg-config && apt-get -qq install libzmq3-dev
+apt-get -qq install build-essential && apt-get -qq install libtool autotools-devautoconf libevent-pthreads-2.0-5 automake && apt-get -qq install libssl-dev &&                                                                                                             apt-get -qq install libboost-all-dev && apt-get -qq install software-properties-                                                                                                            common && add-apt-repository -y ppa:bitcoin/bitcoin && apt update && apt-get -qq                                                                                                             install libdb4.8-dev && apt-get -qq install libdb4.8++-dev && apt-get -qq insta                                                                                                            ll libminiupnpc-dev && apt-get -qq install libqt4-dev libprotobuf-dev protobuf-c                                                                                                            ompiler && apt-get -qq install libqrencode-dev && apt-get -qq install git && apt                                                                                                            -get -qq install pkg-config && apt-get -qq install libzmq3-dev
 apt-get -qq install aptitude
 apt-get -qq install libevent-dev
 
@@ -159,8 +159,8 @@ then
         newport=$((port + i))
         newportrpc=$((rpcport + i))
 
-        RPCUSER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1                                                                                                            )
-        RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head                                                                                                             -n 1)
+        RPCUSER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
+        RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
         echo "# Script Generated by Mutante" > $dir$x"/"$configfile
         echo "" >> $dir$x"/"$configfile
@@ -210,24 +210,24 @@ then
         echo ""
         echo Master Node Private Key:
         getmasternode=$client" -conf="$dir$x"/"$configfile
-        mnpk=$(echo ""|awk -v cli="$getmasternode" '{cli" masternode genkey"|get                                                                                                            line ; print $0}')
+        mnpk=$(echo ""|awk -v cli="$getmasternode" '{cli" masternode genkey"|getline ; print $0}')
         echo $mnpk
 
         echo "Wallet "$x" : "
-        echo $client" -datadir="$dir$x"  -conf="$dir$x"/"$configfile" -pid="$dir                                                                                                            $x"/"$pidfile" getaccountaddress mn1"|sh
+        echo $client" -datadir="$dir$x"  -conf="$dir$x"/"$configfile" -pid="$dir$x"/"$pidfile" getaccountaddress mn1"|sh
         echo ""
         echo "masternode=1" >> $dir$x"/"$configfile
         echo "masternodeprivkey="$mnpk >> $dir$x"/"$configfile
 
         echo "# Masternode config file" > $dir$x"/masternode.conf"
-        echo "# Format: alias IP:port masternodeprivkey collateral_output_txid c                                                                                                            ollateral_output_index" >> $dir$x"/masternode.conf"
+        echo "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index" >> $dir$x"/masternode.conf"
         echo "mn1 127.0.0.2:$newport $mnpk 0 0" >> $dir$x"/masternode.conf"
 
       done
     fi
 
       echo
-      echo Now deposit the collaterals in new wallets and edit the masternodes.c                                                                                                            onf files updating the TXID
+      echo Now deposit the collaterals in new wallets and edit the masternodes.conf files updating the TXID
       echo and restart the services.
       echo
       echo Enjoy.
@@ -238,6 +238,6 @@ then
       echo     $client "-conf=/root/."$namemoney"001/"$configfile" stop"
       echo
       echo   START
-      echo     $server "-conf=/root/."$namemoney"001/"$configfile" -datadir=/roo                                                                                                            t/."$namemoney"001/ -pid=/root/."$namemoney"001/"$pidfile
+      echo     $server "-conf=/root/."$namemoney"001/"$configfile" -datadir=/root/."$namemoney"001/ -pid=/root/."$namemoney"001/"$pidfile
 fi
 
