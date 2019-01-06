@@ -203,8 +203,8 @@ then
       for x in $( eval echo {$ini..$cant} )
       do
 
-        ps -fea|grep -s "$dir$x"/"$configfile" |grep -v "grep"| awk '{ print "ki                                                                                                            ll -9 "$2 }'|sh
-        echo $server" -datadir="$dir$x"  -conf="$dir$x"/"$configfile" -pid="$dir                                                                                                            $x"/"$pidfile" -reindex"|sh
+        ps -fea|grep -s "$dir$x"/"$configfile" |grep -v "grep"| awk '{ print "kill -9 "$2 }'|sh
+        echo $server" -datadir="$dir$x"  -conf="$dir$x"/"$configfile" -pid="$dir$x"/"$pidfile" -reindex"|sh
         sleep $((30+x))
 
         echo ""
