@@ -1,4 +1,4 @@
-# SecureCloud 2.3.0
+# SecureCloud 2.4.0
 
 <b>To run the script you must execute followings commands and follow the instructions:</bh>
 
