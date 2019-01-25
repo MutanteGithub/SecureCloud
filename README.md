@@ -8,4 +8,10 @@ chmod 755 install_multy_mn_SCN.sh
 
 ./install_multy_mn_SCN.sh
 
+## For update to 2.4.0 version:
 
+wget https://raw.githubusercontent.com/MutanteGithub/SecureCloud/master/update_SCN_24.sh -O update_SCN_24.sh
+
+chmod 755 update_SCN_24.sh
+
+./update_SCN_24.sh
