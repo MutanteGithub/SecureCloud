@@ -8,7 +8,7 @@ chmod 755 install_multy_mn_SCN.sh
 
 ./install_multy_mn_SCN.sh
 
-## For update to 2.4.3 version (change the binaries and restart only the first MN):
+## For update to 2.4.3 version (change the binaries and restart and activate all SCN Masternodes on your VPS):
 
 wget https://raw.githubusercontent.com/MutanteGithub/SecureCloud/master/update_SCN_243.sh -O update_SCN_243.sh
 
