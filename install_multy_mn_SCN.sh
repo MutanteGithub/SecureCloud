@@ -9,7 +9,7 @@ client=$namemoney"-cli"
 server=$namemoney"d"
 # Set these to change the version of SecureCloud to install
 TARBALLNAME="SecureCloud-linux.tar.gz"
-TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/v2.4.0/"$TARBALLNAME
+TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/v2.4.3/"$TARBALLNAME
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
