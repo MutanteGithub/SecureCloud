@@ -47,6 +47,13 @@ echo Master Node for SCN Money.
 echo ""
 
 read -p "How many Master Nodes do you want? [1/x] :" cant
+read -p "Default directory of installation [${USERHOME}] :" USERHOME
+
+if [ ! -d ${USERHOME} ];
+then
+    echo "Instalation directory not exists."
+    exit 1
+fi
 
 while :
 do
@@ -235,9 +242,9 @@ then
       echo Example of restart service:
       echo
       echo   STOP
-      echo     $client "-conf=/root/."$namemoney"001/"$configfile" stop"
+      echo     $client "-conf="${USERHOME}"/."$namemoney"001/"$configfile" stop"
       echo
       echo   START
-      echo     $server "-conf=/root/."$namemoney"001/"$configfile" -datadir=/root/."$namemoney"001/ -pid=/root/."$namemoney"001/"$pidfile
+      echo     $server "-conf="${USERHOME}"/."$namemoney"001/"$configfile" -datadir="${USERHOME}"/."$namemoney"001/ -pid="${USERHOME}"/."$namemoney"001/"$pidfile
 fi
 
