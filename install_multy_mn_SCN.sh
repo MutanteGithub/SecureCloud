@@ -199,7 +199,7 @@ then
         echo "bind="$ipmn >> $dir$x"/"$configfile
         echo "masternodeaddr="$ipmn >> $dir$x"/"$configfile
         echo "rpcport="$newportrpc >> $dir$x"/"$configfile
-        echo "port="$newport >> $dir$x"/"$configfile
+        echo "port="$port >> $dir$x"/"$configfile
 
       done
 
@@ -228,7 +228,7 @@ then
 
         echo "# Masternode config file" > $dir$x"/masternode.conf"
         echo "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index" >> $dir$x"/masternode.conf"
-        echo "mn1 127.0.0.2:$newport $mnpk 0 0" >> $dir$x"/masternode.conf"
+        echo "mn1 127.0.0.2:$port $mnpk 0 0" >> $dir$x"/masternode.conf"
 
       done
     fi
