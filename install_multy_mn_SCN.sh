@@ -239,7 +239,7 @@ then
 
         echo "# Masternode config file" > $dir$x"/masternode.conf"
         echo "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index" >> $dir$x"/masternode.conf"
-        echo "mn1 127.0.0.2:$port $mnpk 0 0" >> $dir$x"/masternode.conf"
+        echo "# mn1 127.0.0.2:$port $mnpk 0 0" >> $dir$x"/masternode.conf"
 
       done
     fi
