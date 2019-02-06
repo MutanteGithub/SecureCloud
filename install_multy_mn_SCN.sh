@@ -1,15 +1,26 @@
 #!/bin/bash
+
+namemoney="securecloud"
+
 port=9191
 rpcport=9291
+
+node1="149.28.238.247"
+node2="45.77.59.64"
+node3="45.63.119.225"
+node4="45.76.131.16"
+
+# Set these to change the version of SecureCloud to install
+TARBALLNAME="SecureCloud-linux.tar.gz"
+TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/v2.4.3/"$TARBALLNAME
+
 USERHOME=`eval echo "~$USER"`
-namemoney="securecloud"
+
 configfile=$namemoney".conf"
 pidfile=$namemoney".pid"
 client=$namemoney"-cli"
 server=$namemoney"d"
-# Set these to change the version of SecureCloud to install
-TARBALLNAME="SecureCloud-linux.tar.gz"
-TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/v2.4.3/"$TARBALLNAME
+
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
@@ -185,12 +196,6 @@ then
         echo "maxconnections=256" >> $dir$x"/"$configfile
         echo "staking=1" >> $dir$x"/"$configfile
 
-        #Nodes
-        echo "addnode=149.28.238.247" >> $dir$x"/"$configfile
-        echo "addnode=45.77.59.64" >> $dir$x"/"$configfile
-        echo "addnode=45.63.119.225" >> $dir$x"/"$configfile
-        echo "addnode=45.76.131.16" >> $dir$x"/"$configfile
-
         #IP and Ports
         echo "rpcuser="$RPCUSER >> $dir$x"/"$configfile
         echo "rpcpassword="$RPCPASSWORD >> $dir$x"/"$configfile
@@ -200,6 +205,12 @@ then
         echo "masternodeaddr="$ipmn >> $dir$x"/"$configfile
         echo "rpcport="$newportrpc >> $dir$x"/"$configfile
         echo "port="$port >> $dir$x"/"$configfile
+        
+        #Nodes
+        echo "addnode="$node1 >> $dir$x"/"$configfile
+        echo "addnode="$node2 >> $dir$x"/"$configfile
+        echo "addnode="$node3 >> $dir$x"/"$configfile
+        echo "addnode="$node4 >> $dir$x"/"$configfile
 
       done
 
