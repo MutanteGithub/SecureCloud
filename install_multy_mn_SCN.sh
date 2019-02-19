@@ -127,16 +127,21 @@ then
   apt-get -qq install libevent-dev
   apt-get -qq install libzmq3-dev
 
-  echo "Creating Swap..."
+  if [[ $(swapon -s | grep -ci "/dev" ) -eq 0 ]]  
+  then 
+  {
+      echo "Creating Swap..."
 
-  swap_size="4G"
+      swap_size="2G"
 
-  sudo fallocate -l $swap_size /swapfile
-  sleep 2
-  sudo chmod 600 /swapfile
-  sudo mkswap /swapfile
-  sudo swapon /swapfile
-  echo -e "/swapfile none swap sw 0 0" | sudo tee -a /etc/fstab > /dev/null 2>&1
+      sudo fallocate -l $swap_size /swapfile
+      sleep 2
+      sudo chmod 600 /swapfile
+      sudo mkswap /swapfile
+      sudo swapon /swapfile
+      echo -e "/swapfile none swap sw 0 0" | sudo tee -a /etc/fstab > /dev/null 2>&1
+  }
+  fi
   sudo sysctl vm.swappiness=10
   sudo sysctl vm.vfs_cache_pressure=50
   echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
