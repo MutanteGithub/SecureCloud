@@ -60,10 +60,14 @@ echo ""
 read -p "How many Master Nodes do you want? [1/x] :" cant
 read -p "Default directory of installation [${USERHOME}] :" USERHOME
 
-if [ ! -d ${USERHOME} ];
+if [ ! -d ${USERHOME} ] | [ -z ${USERHOME} ];
 then
-    echo "Instalation directory not exists."
-    exit 1
+   USERHOME=`eval echo "~$USER"`
+fi
+
+if [ -z "$cant" ];
+then
+  cant=1
 fi
 
 while :
@@ -108,43 +112,45 @@ fi
 
 ipmn=$EXTERNALIP
 
-echo "Installing dependencies."
-apt-get -qq update
-echo "Installing dependencies.."
-apt-get -qq upgrade
-echo "Installing dependencies..."
-apt-get -qq autoremove
-apt-get -qq install wget htop unzip
-echo "Installing dependencies...."
-apt-get -qq install build-essential && apt-get -qq install libtool autotools-dev autoconf libevent-pthreads-2.0-5 automake && apt-get -qq install libssl-dev && apt-get -qq install libboost-all-dev && apt-get -qq install software-properties-common && add-apt-repository -y ppa:bitcoin/bitcoin && apt update && apt-get -qq install libdb4.8-dev && apt-get -qq install libdb4.8++-dev && apt-get -qq install libminiupnpc-dev && apt-get -qq install libqt4-dev libprotobuf-dev protobuf-compiler && apt-get -qq install libqrencode-dev && apt-get -qq install git && apt-get -qq install pkg-config && apt-get -qq install libzmq3-dev
-apt-get -qq install aptitude
-apt-get -qq install libevent-dev
-apt-get -qq install libzmq3-dev
+if [ -z "$1" ]
+then
+  echo "Installing dependencies."
+  apt-get -qq update
+  echo "Installing dependencies.."
+  apt-get -qq upgrade
+  echo "Installing dependencies..."
+  apt-get -qq autoremove
+  apt-get -qq install wget htop unzip
+  echo "Installing dependencies...."
+  apt-get -qq install build-essential && apt-get -qq install libtool autotools-dev autoconf libevent-pthreads-2.0-5 automake && apt-get -qq install libssl-dev && apt-get -qq install libboost-all-dev && apt-get -qq install software-properties-common && add-apt-repository -y ppa:bitcoin/bitcoin && apt update && apt-get -qq install libdb4.8-dev && apt-get -qq install libdb4.8++-dev && apt-get -qq install libminiupnpc-dev && apt-get -qq install libqt4-dev libprotobuf-dev protobuf-compiler && apt-get -qq install libqrencode-dev && apt-get -qq install git && apt-get -qq install pkg-config && apt-get -qq install libzmq3-dev
+  apt-get -qq install aptitude
+  apt-get -qq install libevent-dev
+  apt-get -qq install libzmq3-dev
 
-echo "Creating Swap..."
+  echo "Creating Swap..."
 
-swap_size="4G"
+  swap_size="4G"
 
-sudo fallocate -l $swap_size /swapfile
-sleep 2
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-echo -e "/swapfile none swap sw 0 0" | sudo tee -a /etc/fstab > /dev/null 2>&1
-sudo sysctl vm.swappiness=10
-sudo sysctl vm.vfs_cache_pressure=50
-echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
-echo -e "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
+  sudo fallocate -l $swap_size /swapfile
+  sleep 2
+  sudo chmod 600 /swapfile
+  sudo mkswap /swapfile
+  sudo swapon /swapfile
+  echo -e "/swapfile none swap sw 0 0" | sudo tee -a /etc/fstab > /dev/null 2>&1
+  sudo sysctl vm.swappiness=10
+  sudo sysctl vm.vfs_cache_pressure=50
+  echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
+  echo -e "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
 
-# Install SCN daemon
-wget $TARBALLURL
-tar -xzvf $TARBALLNAME
-rm $TARBALLNAME > /dev/null 2>&1
-mv ./securecloudd /usr/local/bin
-mv ./securecloud-cli /usr/local/bin
-mv ./securecloud-tx /usr/local/bin
-rm -rf $TARBALLNAME > /dev/null 2>&1
-
+  # Install SCN daemon
+  wget $TARBALLURL
+  tar -xzvf $TARBALLNAME
+  rm $TARBALLNAME > /dev/null 2>&1
+  mv ./securecloudd /usr/local/bin
+  mv ./securecloud-cli /usr/local/bin
+  mv ./securecloud-tx /usr/local/bin
+  rm -rf $TARBALLNAME > /dev/null 2>&1
+fi
 
 if [ $INPUT_STRING == "y" ]
 then
