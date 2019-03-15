@@ -126,6 +126,7 @@ then
   apt-get -qq install aptitude
   apt-get -qq install libevent-dev
   apt-get -qq install libzmq3-dev
+  apt-get -qq install libboost-program-options-dev
 
   if [[ $(swapon -s | grep -ci "/dev" ) -eq 0 ]]  
   then 
