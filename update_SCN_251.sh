@@ -10,7 +10,7 @@ echo ""
 find /root -type f -iname "securecloud.conf"|grep -i ".securecloud"|grep -v "bak"|awk '{print "/usr/local/bin/securecloud-cli -conf="substr($0,1,length($0)) " -datadir="substr($0,1,length($0)-16) " stop"}'|sh
 
 rm -rf securecloudd securecloud-cli securecloud-tx
-wget https://github.com/securecloudnet/SecureCloud/releases/download/v2.5.0.2/SecureCloud-linux.tar.gz
+wget https://github.com/securecloudnet/SecureCloud/releases/download/v2.5.1/SecureCloud-linux.tar.gz
 tar -xzf SecureCloud-linux.tar.gz
 rm -rf SecureCloud-linux.tar.gz
  
