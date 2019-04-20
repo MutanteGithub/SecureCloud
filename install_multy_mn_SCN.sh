@@ -12,7 +12,7 @@ node4="45.76.131.16"
 
 # Set these to change the version of SecureCloud to install
 TARBALLNAME="SecureCloud-linux.tar.gz"
-TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/v2.5.0.2/"$TARBALLNAME
+TARBALLURL="https://github.com/securecloudnet/SecureCloud/releases/download/v2.5.1/"$TARBALLNAME
 
 USERHOME=`eval echo "~$USER"`
 
