@@ -11,6 +11,7 @@ find /root -type f -iname "securecloud.conf"|grep -i ".securecloud"|grep -v "bak
 
 rm -rf securecloudd securecloud-cli securecloud-tx
 wget https://github.com/securecloudnet/SecureCloud/releases/download/v2.5.1/SecureCloud-linux.tar.gz
+
 tar -xzf SecureCloud-linux.tar.gz
 rm -rf SecureCloud-linux.tar.gz
  
